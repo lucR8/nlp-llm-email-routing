@@ -1,0 +1,44 @@
+############################
+# Python
+############################
+__pycache__/
+*.py[cod]
+*.pyo
+
+############################
+# Jupyter
+############################
+.ipynb_checkpoints/
+
+############################
+# Environments
+############################
+.env
+.venv/
+env/
+conda-meta/
+
+############################
+# HuggingFace / Transformers
+############################
+.cache/
+**/.cache/
+hf_cache/
+
+############################
+# Training outputs (too large for git)
+############################
+outputs/checkpoints/
+outputs/figures/
+outputs/metrics/*.json
+
+############################
+# OS
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Logs
+############################
+*.log
