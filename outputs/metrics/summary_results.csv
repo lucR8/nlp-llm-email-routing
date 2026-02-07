@@ -1,0 +1,3 @@
+model,agent,accuracy,inference_time_sec_total,inference_time_sec_per_item,ram_before_mb,ram_after_mb,ram_delta_mb,n_test
+distilgpt2,GPT-2 prompting (CPU),0.275,15.204587500018533,0.07602293750009266,4560.453125,4544.40625,-16.046875,200
+distilgpt2,GPT-2 LoRA,0.658,3.3728791999747045,0.006745758399949409,984.9921875,986.83984375,1.84765625,500
