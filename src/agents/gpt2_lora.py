@@ -270,13 +270,13 @@ class GPT2LoRARouter:
     def load(self, adapter_dir: str | Path) -> None:
         adapter_dir = Path(adapter_dir)
 
-        # Optionally reload tokenizer if present in the adapter directory.
+        # reload tokenizer if present in the adapter directory
         if (adapter_dir / "tokenizer.json").exists():
             self.tokenizer = AutoTokenizer.from_pretrained(adapter_dir, use_fast=True)
             if self.tokenizer.pad_token is None:
                 self.tokenizer.pad_token = self.tokenizer.eos_token
 
-        # Pick base model from adapter_config.json if available.
+        # Pick base model from adapter_config.json if available
         base_name = self.cfg.model_name
         cfg_path = adapter_dir / "adapter_config.json"
         if cfg_path.exists():
