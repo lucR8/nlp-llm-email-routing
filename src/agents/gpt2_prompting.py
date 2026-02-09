@@ -36,22 +36,20 @@ def build_prompt(subject: str, body: str, label_list: list[str], template: str =
         body=(body or "").strip(),
     )
 
-
 def parse_department(text: str, label_list: list[str]) -> int | None:
     """
-    Strict parsing: accept only an EXACT label match (after normalization),
-    optionally preceded/followed by harmless tokens like ':'.
+    Return label id if a label is predicted exactly (robust parsing).
+    IMPORTANT: apply to the model generated answer only, not the full prompt.
     """
     if not text:
         return None
 
-    t = _normalize(text)
-    # common patterns: "Label: Technical Support", "Technical Support.", etc.
-    t = t.replace("label ", "").replace("label:", "").strip()
-    t = _normalize(t)
+    t = text.strip().lower()
+    t = re.sub(r"[^\w\s]", "", t)
+    t = re.sub(r"\s+", " ", t).strip()
 
     for i, lab in enumerate(label_list):
-        if t == _normalize(lab):
+        if t == lab.lower().strip():
             return i
     return None
 
