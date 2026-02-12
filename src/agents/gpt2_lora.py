@@ -31,7 +31,7 @@ def _format_text(subject: str, body: str) -> str:
 @dataclass(frozen=True)
 class LoRAConfig:
     model_name: str = "distilgpt2"
-    device: str | None = None  # "cpu" ou "cuda" (auto si None)
+    device: str | None = None  # "cpu" ou "cuda"
     max_length: int = 256
 
     # LoRA hyperparams
@@ -51,7 +51,7 @@ class TrainConfig:
     weight_decay: float = 0.01
     logging_steps: int = 50
     save_strategy: str = "epoch"
-    eval_strategy: str = "epoch"  # transformers v5: eval_strategy (NOT evaluation_strategy)
+    eval_strategy: str = "epoch"  
     load_best_model_at_end: bool = True
     metric_for_best_model: str = "accuracy"
     greater_is_better: bool = True
@@ -80,7 +80,7 @@ def prepare_tokenized_splits(
 
     def add_text_and_labels(ex):
         ex["text"] = _format_text(ex.get("subject", ""), ex.get("body", ""))
-        ex["labels"] = int(label2id[ex["queue"]])  # REQUIRED so the model returns a loss
+        ex["labels"] = int(label2id[ex["queue"]])  
         return ex
 
     def tok_fn(ex):
